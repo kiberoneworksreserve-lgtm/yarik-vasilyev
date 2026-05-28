@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ярик и Ульяна | Теплая история</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fff3e0 0%, #ffe6c9 100%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        /* основной контейнер с теплым акцентом и крупными элементами */
+        .story-card {
+            max-width: 1300px;
+            width: 100%;
+            background: rgba(255, 248, 235, 0.9);
+            backdrop-filter: blur(2px);
+            border-radius: 68px;
+            border-radius: 72px;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.08), 0 15px 25px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,240,0.8);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* внутренний отступ, чтобы всё дышало */
+        .container {
+            padding: 3rem 2.5rem 4rem 2.5rem;
+        }
+
+        /* крупные заголовки и общий ритм */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffb882;
+            padding: 0.5rem 1.4rem;
+            border-radius: 100px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3b2a1f;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+        }
+
+        /* сетка: два героя */
+        .heroes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+            margin: 3rem 0 3rem 0;
+        }
+
+        .hero-card {
+            flex: 1;
+            min-width: 260px;
+            background: #fffbf4;
+            border-radius: 56px;
+            padding: 2rem 2rem 2.2rem 2rem;
+            transition: transform 0.25s ease, box-shadow 0.2s;
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 215, 165, 0.7);
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 40px -16px rgba(0, 0, 0, 0.15);
+            background: #fffdf7;
+        }
+
+        /* круглые аватары-иконки (теплые) */
+        .avatar {
+            width: 130px;
+            height: 130px;
+            background: #fde6cf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem auto;
+            box-shadow: 0 15px 20px -8px rgba(156, 98, 32, 0.2);
+            transition: all 0.2s;
+        }
+
+        .avatar svg {
+            width: 80px;
+            height: 80px;
+            stroke-width: 1.5;
+        }
+
+        .hero-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #c05c1e;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-detail {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7a4c29;
+            background: #fff0e2;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            margin-bottom: 1.2rem;
+        }
+
+        .dream-box, .superpower-box {
+            margin-top: 1rem;
+            background: #fff3e9;
+            border-radius: 48px;
+            padding: 1rem 1.2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5d381c;
+            border-left: 6px solid #ffb165;
+            text-align: left;
+        }
+
+        .dream-box span, .superpower-box span {
+            font-weight: 800;
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b95f1a;
+            margin-bottom: 8px;
+        }
+
+        .dream-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #aa551f;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .superpower-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7e4b26;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* цитата / общая магия */
+        .quote-section {
+            margin-top: 2rem;
+            background: #fff0e0;
+            border-radius: 60px;
+            padding: 2rem 2rem;
+            text-align: center;
+            border: 2px dashed #ffcf9a;
+        }
+
+        .quote {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #895a34;
+            line-height: 1.3;
+        }
+
+        .quote small {
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: block;
+            margin-top: 0.7rem;
+            color: #b46f3a;
+        }
+
+        /* вдохновляющий футер */
+        .footer-note {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #b67948;
+            border-top: 2px solid #ffddb0;
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 800px) {
+            .container {
+                padding: 2rem 1.5rem 2.5rem 1.5rem;
+            }
+            .hero-name {
+                font-size: 2rem;
+            }
+            .dream-text {
+                font-size: 1.3rem;
+            }
+            .quote {
+                font-size: 1.5rem;
+            }
+            .hero-detail {
+                font-size: 1.2rem;
+            }
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            .avatar svg {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-card {
+                padding: 1.5rem;
+            }
+            .dream-text {
+                font-size: 1.2rem;
+            }
+            .superpower-text {
+                font-size: 1.2rem;
+            }
+            .quote {
+                font-size: 1.3rem;
+            }
+        }
+
+        button, a {
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div class="story-card">
+    <div class="container">
+        <div style="text-align: center;">
+            <div class="badge">✨ семейная вселенная ✨</div>
+            <h1 style="font-size: 3rem; color: #c55f2a; margin-bottom: 0.5rem;">Ярик & Ульяна</h1>
+            <p style="font-size: 1.4rem; color: #ab6d3e; font-weight: 500;">история об инженерии, любви и суперсиле</p>
+        </div>
+
+        <!-- главные герои -->
+        <div class="heroes-grid">
+            <!-- Ребёнок: Ярик -->
+            <div class="hero-card">
+                <div class="avatar">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="46" fill="#FFD9B5" stroke="#E7A55E" stroke-width="2"/>
+                        <circle cx="35" cy="42" r="4" fill="#6E3F1C"/>
+                        <circle cx="65" cy="42" r="4" fill="#6E3F1C"/>
+                        <path d="M40 62 C45 70, 55 70, 60 62" stroke="#B95F1A" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                        <rect x="46" y="20" width="8" height="14" rx="4" fill="#E4A672" transform="rotate(15 50 27)"/>
+                        <path d="M24 68 L32 72 L38 68" stroke="#AA642E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M76 68 L68 72 L62 68" stroke="#AA642E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M50 75 L50 85" stroke="#C77C40" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="50" cy="87" r="5" fill="#FFBA7A" stroke="#B4561A" stroke-width="1.8"/>
+                    </svg>
+                </div>
+                <div class="hero-name">Ярик</div>
+                <div class="hero-detail">9 лет 🌟</div>
+                <div class="dream-box">
+                    <span>🚀 МЕЧТА 🚀</span>
+                    <div class="dream-text">«Я — великий инженер»</div>
+                </div>
+                <div style="margin-top: 1rem; font-size: 1.1rem; color:#a16236; font-weight:500;">
+                    🔧 конструирует будущее 🔩
+                </div>
+            </div>
+
+            <!-- Родитель: Ульяна -->
+            <div class="hero-card">
+                <div class="avatar">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="46" fill="#FFDCC2" stroke="#EAA869" stroke-width="2"/>
+                        <path d="M32 46 L28 58 L36 54 L44 60 L48 48 L44 44 L36 48 Z" fill="#F7B179" stroke="#C46E2E" stroke-width="1.5"/>
+                        <path d="M68 46 L72 58 L64 54 L56 60 L52 48 L56 44 L64 48 Z" fill="#F7B179" stroke="#C46E2E" stroke-width="1.5"/>
+                        <circle cx="34" cy="40" r="3.5" fill="#613B1A"/>
+                        <circle cx="66" cy="40" r="3.5" fill="#613B1A"/>
+                        <path d="M42 68 C48 75, 52 75, 58 68" stroke="#B45C28" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <path d="M48 24 L52 30 L48 36" stroke="#CF8346" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M65 26 L60 32 L65 38" stroke="#CF8346" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M28 76 L50 83 L72 76" stroke="#CA7A3B" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <circle cx="50" cy="85" r="4.5" fill="#FFC996" stroke="#B25718" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="hero-name">Ульяна</div>
+                <div class="hero-detail">суперсила ✨</div>
+                <div class="superpower-box">
+                    <span>💛 НЕВЕРОЯТНЫЙ ДАР 💛</span>
+                    <div class="superpower-text">
+                        ⚡ мама Ярика ⚡
+                    </div>
+                    <p style="margin-top: 12px; font-size: 1rem; font-weight:500; color:#9b5d2c;">поддержка, вдохновение и вера в каждого юного инженера</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- тёплая вставка: диалог или мудрость -->
+        <div class="quote-section">
+            <div class="quote">
+                «Мама верит, что однажды я построю самый удивительный мост. <br> 
+                А я верю, что её суперсила делает меня сильнее.»
+                <small>— Ярик, будущий великий инженер</small>
+            </div>
+        </div>
+
+        <!-- дополнительный блок - история и призвание -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; margin-top: 2rem; justify-content: space-between;">
+            <div style="flex: 1; background: #FFF5EA; border-radius: 48px; padding: 1.5rem; min-width: 200px;">
+                <h3 style="font-size: 1.7rem; color: #b2581c; margin-bottom: 0.5rem;">🛠️ Инженерный склад ума</h3>
+                <p style="font-size: 1.2rem; color: #6b3f1c; font-weight: 500;">Ярик с 6 лет разбирает конструкторы, паяет светодиоды и мечтает спроектировать экопоезд. «Великий инженер» — это не просто слова, это его жизненный компас.</p>
+            </div>
+            <div style="flex: 1; background: #FFF5EA; border-radius: 48px; padding: 1.5rem; min-width: 200px;">
+                <h3 style="font-size: 1.7rem; color: #b2581c; margin-bottom: 0.5rem;">🌸 Суперсила мамы</h3>
+                <p style="font-size: 1.2rem; color: #6b3f1c; font-weight: 500;">Ульяна объединяет тепло, мудрость и бесконечную заботу. Она — главный источник вдохновения для маленького гения. Мама Ярика способна превращать любую задачу в приключение!</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            💫 каждый день — маленькое открытие 💫 <br/>
+            <span style="font-size: 0.95rem;">семья Ярика и Ульяны — где мечты становятся инженерией</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
